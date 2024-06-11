@@ -112,6 +112,10 @@ header a {
     border-radius: 5px;
 }
 
+.pocketlist a:hover {
+    scale: 1.01;
+}
+
 
 
 /* PocketNotes Styles */

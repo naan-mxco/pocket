@@ -12,20 +12,24 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100dvh;
     position: relative;
-    overflow: hidden;
 }
 
 header {
     width: 90dvw;
     margin: 2.5dvh 0;
-    position: sticky;
-    top: 0;
+    /* position: sticky;
+    top: 2.5dvh; */
 }
 
-.container {
-    max-width: 300px;
+header a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.homecontainer, .notecontainer {
+    max-width: 75svw;
     max-height: 70svh;
     background-color: #fff;
     padding: 20px;
@@ -36,15 +40,19 @@ header {
     scrollbar-width: none;
 }
 
-.quicklinks {
+
+
+/* Index Body Styles  */
+
+.homecontainer .quicklinks {
     display: flex;
     flex: 1;
     flex-wrap: wrap;
 }
 
-.container a {
+.homecontainer a {
     font-family: 'Cascadia Mono', monospace;
-    background-color: #f0f0f0;
+    background-color: #fff;
     border: 2px solid #003;
     color: #003;
     width: 100%;
@@ -53,15 +61,60 @@ header {
     text-decoration: none;
 }
 
-.container a.today-pocket {
+.homecontainer a.today-pocket {
     background-color: #003;
     border: 2px solid #003;
-    color: #f0f0f0;
+    color: #fff;
 }
 
-.container a:hover {
+.homecontainer a:hover {
     scale: 1.01;
 }
+
+
+
+/* Pocket List Style */
+
+.content {
+    width: 80dvw;
+}
+
+.content h1 {
+    color: #fff;
+    text-align: center;
+}
+
+.pocketlist {
+    width: 100%;
+    margin: 3vh auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.pocketlist a {
+    min-width: fit-content;
+    /* max-width: 250px; */
+    /* min-height: fit-content; */
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    padding: 20px;
+    background-color: #007;
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
+
+
+
+/* PocketNotes Styles */
 
 .note h4, .note label {
     font-family: monospace;
@@ -71,8 +124,12 @@ blockquote {
     white-space: pre-wrap;
 }
 
+
+
+/* Media Styles */
+
 audio {
-    margin: 0 0 1svh;
+    margin: 0 0 5px;
 }
 
 audio::-webkit-media-controls-enclosure {

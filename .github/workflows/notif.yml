@@ -23,6 +23,11 @@ jobs:
             echo "::set-output name=match::false"
           fi
 
+      - name: Execute Notification Workflow
+        uses: naan-mxco/pocket@main
+        with:
+          github-token: ${{ secrets.ACTION_TOKEN }}
+
       - name: Send WhatsApp Message
         if: steps.filter_commit.outputs.match == 'true'
         uses: naan-mxco/pocket@main

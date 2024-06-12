@@ -11,7 +11,7 @@ jobs:
     
     steps:
       - name: Checkout Page
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
       
       - name: Filter Commit Message
         id: filter_commit
@@ -25,14 +25,14 @@ jobs:
 
       - name: Send WhatsApp Message
         if: steps.filter_commit.outputs.match == 'true'
-        uses: naan-mxco/pocket@v1
+        uses: naan-mxco/pocket@main
         with:
           to: ${{ secrets.WHATSAPP_NUMBER }}
           message: "you have a new pocket. check it at naan-mxco.github.io/pocket"
 
       - name: Send Email
         if: steps.filter_commit.outputs.match == 'true'
-        uses: dawidd6/action-send-mail@v3
+        uses: naan-mxco/pocket@main
         with:
           server_address: smtp.gmail.com
           server_port: 587

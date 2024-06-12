@@ -1,0 +1,44 @@
+name: Notification Automation
+
+on:
+  push:
+    branches:
+      - main  # Change this to your desired branch
+
+jobs:
+  send_notification:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Page
+        uses: actions/checkout@v2
+      
+      - name: Filter Commit Message
+        id: filter_commit
+        run: |
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 $GITHUB_SHA)
+          if [[ $COMMIT_MESSAGE == *"added new pocket"* ]]; then
+            echo "::set-output name=match::true"
+          else
+            echo "::set-output name=match::false"
+          fi
+
+      - name: Send WhatsApp Message
+        if: steps.filter_commit.outputs.match == 'true'
+        uses: naan-mxco/pocket@v1
+        with:
+          to: ${{ secrets.WHATSAPP_NUMBER }}
+          message: "you have a new pocket. check it at naan-mxco.github.io/pocket"
+
+      - name: Send Email
+        if: steps.filter_commit.outputs.match == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "New Pocket Added to Repository"
+          body: "you have a new pocket. check it at naan-mxco.github.io/pocket"
+          to: ${{ secrets.EMAIL_TO }}
+          from: ${{ secrets.EMAIL_FROM }}

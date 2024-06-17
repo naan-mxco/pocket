@@ -9,8 +9,8 @@ jobs:
   send_notification:
     runs-on: ubuntu-latest
     env:
-      NAAN_MAIL: ${{ secrets.GERV_MAIL }}
-      NAAN_PW: ${{ secrets.GERV_PW }}
+      GERV_MAIL: ${{ secrets.GERV_MAIL }}
+      GERV_PW: ${{ secrets.GERV_PW }}
 
     steps:
       - name: Checkout Page

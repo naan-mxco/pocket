@@ -1,5 +1,5 @@
 name: 'Trigger Notification Workflow'
-description: 'Triggers the notification workflow defined in .github/workflows/notif.yml'
+description: 'Triggers the notification workflow defined in .github/workflows/notifier.yml'
 author: 'naan-mxco'
 inputs:
   github-token:
@@ -21,7 +21,7 @@ runs:
         curl -X POST \
           -H "Authorization: token $github_token" \
           -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/naan-mxco/pocket/actions/workflows/notif.yml/dispatches \
+          https://api.github.com/repos/naan-mxco/pocket/actions/workflows/notifier.yml/dispatches \
           -d '{"ref":"main"}'
       shell: bash
       env:

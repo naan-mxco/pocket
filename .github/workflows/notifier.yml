@@ -1,0 +1,42 @@
+name: Notification Automation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send_notification:
+    runs-on: ubuntu-latest
+    env:
+      NAAN_MAIL: ${{ secrets.GERV_MAIL }}
+      NAAN_PW: ${{ secrets.GERV_PW }}
+
+    steps:
+      - name: Checkout Page
+        uses: actions/checkout@main
+
+      - name: Filter Commit Message
+        id: filter_commit
+        run: |
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 $GITHUB_SHA)
+          if [[ $COMMIT_MESSAGE == *"added new pocket"* ]]; then
+            echo "::set-output name=match::true"
+          else
+            echo "::set-output name=match::false"
+          fi
+
+      - name: Execute Notification Workflow
+        uses: naan-mxco/pocket@main
+        with:
+          github-token: ${{ secrets.ACTION_TOKEN }}
+
+      - name: Send Email Notification
+        if: steps.filter_commit.outputs.match == 'true'
+        run: |
+          python pocket_mailer.py
+
+    #   - name: Send WhatsApp Notification
+    #     if: steps.filter_commit.outputs.match == 'true'
+    #     run: |
+    #       python send_whatsapp_notification.py

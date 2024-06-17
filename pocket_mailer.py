@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 recipients: dict = {
+    'naan.mxco@gmail.com' : 'Bee Tee',
     'bayodenancy111@gmail.com' : 'Bolanle',
     'toniiabudu@gmail.com' : 'Tonii',
 }

@@ -35,6 +35,7 @@ jobs:
         if: steps.filter_commit.outputs.match == 'true'
         run: |
           python pocket_mailer.py
+        working-directory: .github/workflows
 
     #   - name: Send WhatsApp Notification
     #     if: steps.filter_commit.outputs.match == 'true'

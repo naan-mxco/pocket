@@ -1,0 +1,11 @@
+#3498db
+
+#fa9ee9
+#96ffef
+
+#ff90af
+#ffd49b
+#ffd55e
+
+linear-gradient(#3498db 45%, #ff7cf9)
+#002018

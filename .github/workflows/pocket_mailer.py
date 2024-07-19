@@ -46,11 +46,13 @@ def send_mail():
                         msg['Subject'] = "IT'S BOLA'S BIRTHDAY!"
                 elif (now_date[1:]) == ['10', '09']:
                     msg['Subject'] = "TONII'S BIRTHDAY!"
+                elif (dayof_week == 'FR') and ((now_date[2]) == '19'):
+                    msg['Subject'] = "IT'S OUR WEEK-VERSARY AND OUR MESEVERSARY!!!"
                 elif (now_date[1:]) == ['04', '19']:
                     msg['Subject'] = "IT'S OUR ANNIVERSARY!"
                 elif (now_date[2]) == '19':
                     msg['Subject'] = "IT'S OUR MESEVERSARY!"
-                elif (dayof_week == 'FR') and (((now_date[1:]) != ['08', '04']) or ((now_date[1:]) == ['10', '09'])):
+                elif (dayof_week == 'FR'):
                     msg['Subject'] = "IT'S OUR WEEK-VERSARY!"
                 else:
                     msg['Subject'] = f"check your pocket!"

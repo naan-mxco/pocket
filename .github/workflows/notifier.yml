@@ -34,7 +34,7 @@ jobs:
       - name: Send Email Notification
         if: steps.filter_commit.outputs.match == 'true'
         run: |
-          python test.py
+          python events_mailer.py
         working-directory: .github/workflows
 
     #   - name: Send WhatsApp Notification

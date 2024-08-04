@@ -57,7 +57,9 @@ def sbj(recipient_mail):
     msg_subject = "IT'S "
     for details in events.values():
         if details["condition"]:
-            if msg_subject != "IT'S ":
+            if recipient_mail == 'bayodenancy111@gmail.com' and details["subject"] == "HAPPY BIRTHDAY, BOLANLE!!!":
+                return details["subject"]
+            elif msg_subject != "IT'S ":
                 msg_subject += " AND "
             msg_subject += details["subject"]
     if msg_subject == "IT'S ":

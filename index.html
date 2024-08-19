@@ -4,35 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bola's Pocket</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/birthday.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/duoBeeTee.png">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             /* background: linear-gradient(#ff6969 50%, #f9a7b0);
             background-color: #db0123; */
-            background-image: url('pockets/media/images/IMG-pinkclouds.jpeg');
+            background-image: url('notes/media/images/IMG-12381.png');
+            background-position: center;
             background-size: cover;
             overflow: hidden;
         }
 
         .homecontainer {
-            background-color: #ffffff77;
-            border: 3px solid #720000;
-            color: #810000;
+            background-color: #33333377;
+            border: 3px solid #000;
+            color: #fff;
             box-shadow: none;
         }
 
         .homecontainer a.today-pocket {
-            background-color: #e4272780;
-            border: 2px solid #8f0000;
+            background-color: #000000c5;
+            border: 2px solid #000;
             color: #fff;
             font-weight: bold;
         }
 
         .homecontainer a {
             background-color: #00000000;
-            border: 2px solid #8f0000;
-            color: #810000;
+            border: 2px solid #000;
+            color: #fff;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 21px 0;
+            background-color: #00000094;
+            color: #fbffc7;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        .homealert {
+            width: 75svw;
+            margin: 0 auto;
+            bottom: 2.5dvh;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -44,15 +63,25 @@
             welcome to your Pocket
         </h1>
         <div class="quicklinks">
-            <a href="pockets/2024-08/pocket-040824.html" class="today-pocket">
-                🎂✨
+            <a href="notes/2024-08/pocket-190824.html" class="today-pocket">
+                today's note✨
             </a>
-            <a href="pockets.html" class="all-pockets">
-                all pocket items
+            <a href="notes.html" class="all-notes">
+                all pocketnotes
             </a>
         </div>
-        
     </div>
+
+    <footer>
+        <p class="homealert">
+            Pocket v2<br>
+            <i>
+                we're moving! hopefully before year's end,
+                and we're sneaking in some new minor features with more to come by the time we migrate!
+                are you excited?
+            </i>
+        </p>
+    </footer>
     
 </body>
 </html>

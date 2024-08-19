@@ -8,7 +8,10 @@ recipients: dict = {
     'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
     'bayodenancy111@gmail.com' : 'Bolanle Nancy',
     'toniiabudu@gmail.com' : 'Tonii Abudu',
+    'auralex99@gmail.com' : 'Anthony A U'
 }
+
+
 
 def gdt():
     #get datetime
@@ -24,7 +27,45 @@ def gdt():
 
 
 
+def ordinal_suffix(number):
+    n = ''
+    uniq = {'1':'st',
+            '2':'nd',
+            '3':'rd',}
+    
+    if number <= 0:
+        pass
+    elif len(str(number)) > 1 and str(number)[-2] == '1':
+        n = f'{number}th'
+    elif str(number)[-1] in uniq:
+        n = f'{number}{uniq[str(number)[-1]]}'
+    else:
+        n = f'{number}th'
+    
+    return n
+
+
+
+def from419():
+    #start date
+    start_date = datetime(2024, 4, 19)
+    #current date
+    current_date = datetime.now()
+    #time between start and current
+    difference = current_date - start_date
+    
+    #number of weeks, months, and years
+    weeks = difference.days // 7
+    months = difference.days // 30
+    years = difference.days // 365
+    
+    return weeks, months, years
+
+
+
 def sbj(recipient_mail):
+    #time since 419
+    weeks, months, years = from419()
     #subject
     dayof_week, now_date, now_time, t_datetime, t_date = gdt()
     events = {
@@ -38,15 +79,15 @@ def sbj(recipient_mail):
             },
         'anno' : {
             "condition": now_date[1:] == ['04', '19'],
-            "subject": "OUR ANNIVERSARY"
+            "subject": f"OUR {ordinal_suffix(years)} ANNIVERSARY"
             },
         'mese' : {
             "condition": now_date[2] == '19',
-            "subject": "OUR MESEVERSARY"
+            "subject": f"OUR {ordinal_suffix(months)} MESEVERSARY"
             },
         'week' : {
             "condition": dayof_week == 'FR',
-            "subject": "OUR WEEK-VERSARY"
+            "subject": f"OUR {ordinal_suffix(weeks)} WEEK-VERSARY"
             },
         'gf' : {
             "condition": now_date[1:] == ['08', '01'],
@@ -95,16 +136,16 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
             link_bg = '#000000'
             link_text = '#ffffff'
             #mail contents
-            # anchor_link: str = "https://naan-mxco.github.io/pocket/"
-            all_items_link: str = "https://naan-mxco.github.io/pocket/pockets"
-            # text: str = f"hi, {recipient_name},\nyou have a new item in your pocket"
-            html_template = f'''<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>\n{msg['Subject']}\n</title>\n<style>\nbody {{color: {text_color};padding: 10px;}}\ntable {{width: 350px;margin: 0 auto;background-color: {bg_color};color: {text_color};border: 3px solid #000;}}\nth, td {{padding: 5px;width: 75%;text-align: center;}}\nh1, p {{font-family: Garamond, serif;margin: 0;padding: 5px;}}\nsvg {{margin: 10px auto 0; padding: 5px;}}\nlabel {{font-family: monospace;}}\na {{font-family: monospace;font-size: larger;font-weight: bold;width: 90%;margin: 0 auto 10px;padding: 10px 0;display: block;background-color: {link_bg};color: {link_text};text-decoration: none;}}\n</style>\n</head>\n<body>\n<table align="center">\n<tr>\n<th>\n<table style="border: none;width: 90%;background-color: none;">\n<tr>\n<td align="center">\n<svg display="inline" margin="0" width="20" height="20"><polygon points="0,0 20,0 20,15 10,20 0,15" fill="#fff"/></svg>\n<h1>\n{msg['Subject']}\n</h1>\n<label>\n{t_datetime}\n</label>\n</td>\n</tr>\n</table>\n<hr style="width: 90%;border: 1px solid {text_color};">\n</th>\n</tr>\n<tr>\n<td align="center">\n<table style="border: none;width: 90%;background-color: none;">\n<tr>\n<td align="center">\n<p style="font-size: 20px;">\n{text}\n</p>\n</td>\n</tr>\n</table>\n</td>\n</tr>\n<tr>\n<td align="center">\n<a href="{anchor_link}">\ncheck it\n</a>\n</td>\n</tr>\n<tr>\n<td align="center">\n<a href="{all_items_link}">\nsee all items\n</a>\n</td>\n</tr>\n</table>\n</body>\n</html>'''
+            anchor_link: str = "https://naan-mxco.github.io/pocket/"
+            notes_link: str = "https://naan-mxco.github.io/pocket/notes.html"
+            text: str = f"hi, {recipient_name},\nyou have a new note in your pocket"
+            html_template = f'''<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>\n{msg['Subject']}\n</title>\n<style>\nbody {{color: {text_color};padding: 10px;}}\ntable {{width: 350px;margin: 0 auto;background-color: {bg_color};color: {text_color};border: 3px solid #000;}}\nth, td {{padding: 5px;width: 75%;text-align: center;}}\nh1, p {{font-family: Garamond, serif;margin: 0;padding: 5px;}}\nsvg {{margin: 10px auto 0; padding: 5px;}}\nlabel {{font-family: monospace;}}\na {{font-family: monospace;font-size: larger;font-weight: bold;width: 90%;margin: 0 auto 10px;padding: 10px 0;display: block;background-color: {link_bg};color: {link_text};text-decoration: none;}}\n</style>\n</head>\n<body>\n<table align="center">\n<tr>\n<th>\n<table style="border: none;width: 90%;background-color: none;">\n<tr>\n<td align="center">\n<svg display="inline" margin="0" width="20" height="20"><polygon points="0,0 20,0 20,15 10,20 0,15" fill="#fff"/></svg>\n<h1>\n{msg['Subject']}\n</h1>\n<label>\n{t_datetime}\n</label>\n</td>\n</tr>\n</table>\n<hr style="width: 90%;border: 1px solid {text_color};">\n</th>\n</tr>\n<tr>\n<td align="center">\n<table style="border: none;width: 90%;background-color: none;">\n<tr>\n<td align="center">\n<p style="font-size: 20px;">\n{text}\n</p>\n</td>\n</tr>\n</table>\n</td>\n</tr>\n<tr>\n<td align="center">\n<a href="{anchor_link}">\ncheck it\n</a>\n</td>\n</tr>\n<tr>\n<td align="center">\n<a href="{notes_link}">\nsee all notes\n</a>\n</td>\n</tr>\n</table>\n</body>\n</html>'''
         
             # print(html_template)
             # print(msg['Subject'])
             # print(text)
             #turn  into plain/html MIMEText objects
-            part1 = MIMEText(f"{t_datetime}\n\n{text}\ncheck it at {anchor_link},\ncheck all items at {all_items_link}.", 'plain')
+            part1 = MIMEText(f"{t_datetime}\n\n{text}\ncheck it at {anchor_link},\see all notes at {notes_link}.", 'plain')
             part2 = MIMEText(html_template, 'html')
             #attach parts into message container
             msg.attach(part1)

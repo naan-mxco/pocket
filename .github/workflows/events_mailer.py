@@ -104,7 +104,7 @@ def sbj(recipient_mail):
                 msg_subject += " AND "
             msg_subject += details["subject"]
     if msg_subject == "IT'S ":
-        msg_subject = "check your pocket (IT WAS OUR 24TH WEEK-VERSARY YESTERDAY)"
+        msg_subject = "check your pocket"
     msg_subject += "!"
 
     return msg_subject
@@ -164,6 +164,6 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
 
 if __name__ == '__main__':
     for recipient_mail, recipient_name in recipients.items():
-        text: str = f"hi, {recipient_name},\nyou have a new (late) note in your pocket"
+        text: str = f"hi, {recipient_name},\nyou have a new note in your pocket"
         anchor_link: str = "https://naan-mxco.github.io/pocket/"
         send_mail(recipient_mail, recipient_name, sbj(recipient_mail), text, anchor_link)

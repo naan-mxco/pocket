@@ -20,7 +20,7 @@ jobs:
         id: filter_commit
         run: |
           COMMIT_MESSAGE=$(git log --format=%B -n 1 $GITHUB_SHA)
-          if [[ $COMMIT_MESSAGE == *"new pocket"* ]]; then
+          if [[ $COMMIT_MESSAGE == *"new pocketnote"* ]]; then
             echo "::set-output name=match::true"
           else
             echo "::set-output name=match::false"

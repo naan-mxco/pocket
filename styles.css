@@ -91,7 +91,7 @@ header a {
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
-    margin: 3vh auto;
+    margin: 1.5dvh auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -100,7 +100,7 @@ header a {
     gap: 15px;
 }
 
-.pocketlist a {
+.pocketlist a, details {
     min-width: fit-content;
     /* max-width: 250px; */
     /* min-height: fit-content; */

@@ -74,8 +74,8 @@ def sbj(recipient_mail):
             "subject": "HAPPY BIRTHDAY, BOLANLE" if recipient_mail == 'bayodenancy111@gmail.com' else "BOLA'S BIRTHDAY"
             },
         'tonii' : {
-            "condition": (now_date[1:] == ['10', '10']) or (now_date[1:] == ['10', '11']),
-            "subject": "OUR POST-BIRTHDAY"
+            "condition": now_date[1:] == ['10', '09'],
+            "subject": "OUR BIRTHDAY"
             },
         'anno' : {
             "condition": now_date[1:] == ['04', '19'],

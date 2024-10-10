@@ -70,12 +70,12 @@ def sbj(recipient_mail):
     dayof_week, now_date, now_time, t_datetime, t_date = gdt()
     events = {
         'bola' : {
-            "condition": now_date[1:] == ['08', '04'],
+            "condition": now_date[1:] == ['08', '04'], #month, day
             "subject": "HAPPY BIRTHDAY, BOLANLE" if recipient_mail == 'bayodenancy111@gmail.com' else "BOLA'S BIRTHDAY"
             },
         'tonii' : {
-            "condition": now_date[1:] == ['10', '09'],
-            "subject": "TONII'S BIRTHDAY"
+            "condition": (now_date[1:] == ['10', '10']) or (now_date[1:] == ['10', '11']),
+            "subject": "OUR POST-BIRTHDAY"
             },
         'anno' : {
             "condition": now_date[1:] == ['04', '19'],

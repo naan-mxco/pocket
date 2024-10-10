@@ -64,5 +64,5 @@ if __name__ == '__main__':
     for recipient_mail, recipient_name in recipients.items():
         subject: str = "you have a couple of new pocket updates!"
         text: str = f"hi, {recipient_name},\nyou have an old but recently updated pocket note from your email, and a new pocket note for today. your camp notes are also on the way!"
-        anchor_link: str = "https://naan-mxco.github.io/pocket/notes/2024-08/note-071024.html"
+        anchor_link: str = "https://naan-mxco.github.io/pocket"
         send_mail(recipient_mail, recipient_name, subject, text, anchor_link)

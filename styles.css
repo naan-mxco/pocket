@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Google';
+    src: url('../../assets/ProductSans-Regular.ttf') format('truetype');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +29,18 @@ header {
     top: 2.5dvh; */
 }
 
-header a {
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+header a, footer a {
     color: #fff;
     text-decoration: none;
 }
@@ -39,6 +55,35 @@ header a {
     text-align: center;
     overflow-y: scroll;
     scrollbar-width: none;
+}
+
+.space {
+    width: 75vw;
+}
+
+.circle-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #000;
+    color: white;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 1em;
+    font-weight: bolder;
+    margin: 0 10px;
+    flex-shrink: 0;
+}
+
+.sign {
+    color: #111;
+    text-align: right;
+    font-style: italic;
+    width: 75dvw;
+    max-width: 275px;
 }
 
 

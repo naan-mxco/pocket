@@ -93,6 +93,10 @@ def sbj(recipient_mail):
             "condition": now_date[1:] == ['08', '01'],
             "subject": "GIRLFRIENDS' DAY"
         },
+        'sun' : {
+            "condition": now_date[1:] == ['11', '10'],
+            "subject": "THE DAY TEE KISSED THE SUN"
+        },
     }
 
     msg_subject = "IT'S "

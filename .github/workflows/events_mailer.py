@@ -146,7 +146,7 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
             #mail body
             bg_color = '#005959'
             text_color = '#ffffff'
-            link_bg = '#000000'
+            link_bg = '#7c0303'
             link_text = '#ffffff'
             #mail contents
             anchor_link: str = "https://naan-mxco.github.io/pocket/"

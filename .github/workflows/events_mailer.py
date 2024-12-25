@@ -5,10 +5,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 recipients: dict = {
-    'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
-    'bayodenancy111@gmail.com' : 'Bolanle Nancy',
-    'toniiabudu@gmail.com' : 'Tonii Abudu',
-    'auralex99@gmail.com' : 'Anthony A U'
+    # 'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
+    # 'bayodenancy111@gmail.com' : 'Bolanle Nancy',
+    # 'toniiabudu@gmail.com' : 'Tonii Abudu',
+    # 'auralex99@gmail.com' : 'Anthony A U'
+    'abudu.m1700302@st.futminna.edu.ng' : 'The Boss'
 }
 
 
@@ -96,6 +97,14 @@ def sbj(recipient_mail):
         'sun' : {
             "condition": now_date[1:] == ['11', '10'],
             "subject": "THE DAY TEE KISSED THE SUN"
+        },
+        'xmas' : {
+            "condition": now_date[1:] == ['12', '25'],
+            "subject": "CHRISTMAS"
+        },
+        'xmasszn' : {
+            "condition": (now_date[1:][0] == ['12'] and int(now_date[1:][1]) > 25) or (now_date[1:][0] == ['1'] and int(now_date[1:][1]) <= 6),
+            "subject": "CHRISTMAS SEASON"
         },
     }
 

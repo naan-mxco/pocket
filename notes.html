@@ -50,15 +50,29 @@
 
         details {
             color: #fff;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
         }
         
-        .camp {
-            background-color: #3a3a3acc;
+        .christmas, .camp {
             text-align: center;
         }
 
-        .innerlist a {
+        .camp {
+            background-color: #3a3a3acc;
+        }
+
+        .christmas {
+            background-color: #7c0303ec;
+        }
+
+        .innerlist {
             min-width: fit-content;
+            width: 100%;
             /* max-width: 250px; */
             /* min-height: fit-content; */
             display: flex;
@@ -66,9 +80,16 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
+        }
+
+        .innerlist a {
+            min-width: fit-content;
+            width: 100%;
+            /* max-width: 250px; */
+            /* min-height: fit-content; */
             text-decoration: none;
             color: #000;
-            margin: 10px 2.5px;
+            margin: 10px 2.5px 0;
             padding: 10px;
             background-color: #ffffffcc;
             border: 1px solid #333;
@@ -90,6 +111,22 @@
         <h1>All Bola's Pocketnotes</h1>
 
         <div class="list-container">
+            <div class="pocketlist">
+                <a href="notes/2024-12/xmas.html" style="background-color: #3a8232; color: #fff;">
+                    Noel
+                </a>
+            </div>
+            <details class="christmas">
+                <summary id="christmas">12 Days of Christmas</summary>
+                <div class="innerlist">
+                    <a href="notes/2024-12/christmas/day1.html" style="background-color: #3a8232; color: #fff; border-color: #fff;">
+                        1st Day of Christmas
+                    </a>
+                    <!-- <a href="notes/2024-12/christmas/day1.html" style="background-color: #fff; color: #000; border-color: #fff;">
+                        2nd Day of Christmas
+                    </a> -->
+                </div>
+            </details>
             <div class="pocketlist">
                 <a href="notes/2024-11/note-191124.html">
                     se'n

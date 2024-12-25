@@ -5,11 +5,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 recipients: dict = {
-    # 'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
-    # 'bayodenancy111@gmail.com' : 'Bolanle Nancy',
-    # 'toniiabudu@gmail.com' : 'Tonii Abudu',
-    # 'auralex99@gmail.com' : 'Anthony A U'
-    'abudu.m1700302@st.futminna.edu.ng' : 'The Boss'
+    'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
+    'bayodenancy111@gmail.com' : 'Bolanle Nancy',
+    'toniiabudu@gmail.com' : 'Tonii Abudu',
+    'auralex99@gmail.com' : 'Anthony A U'
+    # 'abudu.m1700302@st.futminna.edu.ng' : 'The Boss'
 }
 
 
@@ -146,7 +146,7 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
             #mail body
             bg_color = '#005959'
             text_color = '#ffffff'
-            link_bg = '#7c0303'
+            link_bg = '#000000'
             link_text = '#ffffff'
             #mail contents
             anchor_link: str = "https://naan-mxco.github.io/pocket/"

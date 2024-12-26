@@ -102,10 +102,10 @@ def sbj(recipient_mail):
             "condition": now_date[1:] == ['12', '25'],
             "subject": "CHRISTMAS"
         },
-        'xmasszn' : {
-            "condition": (now_date[1:][0] == ['12'] and int(now_date[1:][1]) > 25) or (now_date[1:][0] == ['1'] and int(now_date[1:][1]) <= 6),
+        'xmasszn': {
+            "condition": (now_date[1] == '12' and int(now_date[2]) >= 26) or (now_date[1] == '01' and int(now_date[2]) <= 6),
             "subject": "CHRISTMAS SEASON"
-        },
+        }
     }
 
     msg_subject = "IT'S "

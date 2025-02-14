@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - main
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
 
 jobs:
   send_notification:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
       GERV_MAIL: ${{ secrets.GERV_MAIL }}
@@ -41,3 +46,33 @@ jobs:
     #     if: steps.filter_commit.outputs.match == 'true'
     #     run: |
     #       python send_whatsapp_notification.py
+
+
+  send_notification_on_issue:
+    if: github.event_name == 'issues' || github.event_name == 'issue_comment'
+    runs-on: ubuntu-latest
+
+    env:
+      GERV_MAIL: ${{ secrets.GERV_MAIL }}
+      GERV_PW: ${{ secrets.GERV_PW }}
+
+    steps:
+      - name: Filter Issue or Comment Content
+        id: filter_content
+        run: |
+          CONTENT="${{ github.event.issue.body || github.event.comment.body }}"
+          if [[ $CONTENT == *"Alert:"* ]]; then
+            echo "::set-output name=match::true"
+          else
+            echo "::set-output name=match::false"
+          fi
+
+      - name: Send Email Notification for Issue or Comment
+        if: steps.filter_content.outputs.match == 'true'
+        run: |
+          python response_mailer.py
+        working-directory: .github/workflows
+
+      - name: Debug Outputs for Issue or Comment
+        if: steps.filter_content.outputs.match == 'false'
+        run: echo "No matching content found. Skipping notification."

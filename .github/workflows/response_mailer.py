@@ -6,10 +6,24 @@ from email.mime.text import MIMEText
 from events_mailer import gdt
 
 recipients: dict = {
-    'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
-    'bayodenancy111@gmail.com' : 'Bolanle Nancy',
-    'toniiabudu@gmail.com' : 'Tonii Abudu',
-    'auralex99@gmail.com' : 'Anthony A U'
+    # 'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
+    # 'auralex99@gmail.com' : 'Anthony A U',
+    'toniiabudu@gmail.com' : 'Tonii Abudu'
+}
+
+email_content = {
+    "option_a": {
+        "subject": "Important Notification: Option A Selected",
+        "body": "User has selected Option A. Please take the necessary action."
+    },
+    "option_b": {
+        "subject": "Alert: Option B Chosen",
+        "body": "Option B was chosen by the user. Follow up accordingly."
+    },
+    "option_c": {
+        "subject": "Heads Up: Option C Picked",
+        "body": "The user picked Option C. No immediate action required."
+    }
 }
 
 def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
@@ -24,11 +38,9 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
             server.starttls()
             server.login(sender_mail, password)
 
-            
             #mail container
             msg = MIMEMultipart('alternative')
             #correspondents
-            # msg['From'] = sender_mail
             msg['To'] = recipient_mail
             msg['Subject'] = subject
             #mail body
@@ -44,7 +56,7 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
             # print(msg['Subject'])
             # print(text)
             #turn  into plain/html MIMEText objects
-            part1 = MIMEText(f"{t_datetime}\n\n{text}\ncheck it at {anchor_link},\nsee all notes at {notes_link}.", 'plain')
+            part1 = MIMEText(f"{t_datetime}\n\n{text}", 'plain')
             part2 = MIMEText(html_template, 'html')
             #attach parts into message container
             msg.attach(part1)
@@ -62,7 +74,7 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
 
 if __name__ == '__main__':
     for recipient_mail, recipient_name in recipients.items():
-        subject: str = "your camp notes are ready!"
-        text: str = f"hi, {recipient_name},\nyou have not-so-new pocket notes from camp! just a reminder that Company loves Misery and thanks Misery for keeping Company company in camp ❤"
+        subject: str = "moment of truth!"
+        text: str = f"she said {response}"
         anchor_link: str = "https://naan-mxco.github.io/pocket/notes/2024-camp/campnote-1.html"
         send_mail(recipient_mail, recipient_name, subject, text, anchor_link)

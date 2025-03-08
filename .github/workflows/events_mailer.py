@@ -114,6 +114,10 @@ def sbj(recipient_mail):
             "condition": now_date[1:] == ['02', '14'],
             "subject": "VALENTINE'S DAY"
         },
+        'iwd' : {
+            "condition": now_date[1:] == ['03', '08'],
+            "subject": "INTERNATIONAL WOMEN'S DAY"
+        },
     }
 
     msg_subject = "IT'S "

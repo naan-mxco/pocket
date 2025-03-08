@@ -160,7 +160,7 @@ header a, footer a {
     padding: 20px;
     background-color: #000;
     border: 2px solid #fff;
-    border-radius: 5px;
+    border-radius: 1em;
 }
 
 .pocketlist a:hover {

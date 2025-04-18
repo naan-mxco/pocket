@@ -132,8 +132,6 @@ header a, footer a {
 
 .pocketlist {
     width: 100%;
-    max-height: 81svh;
-    overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
     margin: 1.5dvh auto;

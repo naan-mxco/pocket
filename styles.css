@@ -158,7 +158,7 @@ header a, footer a {
     padding: 20px;
     background-color: #000;
     border: 2px solid #fff;
-    border-radius: 1em;
+    border-radius: 1.5rem;
 }
 
 .pocketlist a:hover {

@@ -189,6 +189,6 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
 
 if __name__ == '__main__':
     for recipient_mail, recipient_name in recipients.items():
-        text: str = f"hi, {recipient_name},\nyou have a new note in your pocket. it is quite later than it should have come, but i'm sure you've got my other mail (futuremail).\nanyway, there is something attached to your pocket. love you!"
+        text: str = f"hi, {recipient_name},\nit has been a WHILE EEE! happy girlfriend's day in arrears. hope you felt like a loved babe.\nanyway, you should check out what's new in your pocket. love you!"
         anchor_link: str = "https://naan-mxco.github.io/pocket/"
         send_mail(recipient_mail, recipient_name, sbj(recipient_mail), text, anchor_link)

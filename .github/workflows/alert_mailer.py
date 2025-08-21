@@ -14,8 +14,8 @@ recipients: dict = {
 
 def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
     #mail configuration
-    sender_mail = 'gervanz.ix@gmail.com'
-    password = 'oryi kjra deht emlb'
+    sender_mail = os.getenv('GERV_MAIL')
+    password = os.getenv('GERV_PW')
     t_datetime = gdt()[3]
 
     #server connect
@@ -62,7 +62,7 @@ def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
 
 if __name__ == '__main__':
     for recipient_mail, recipient_name in recipients.items():
-        subject: str = "your camp notes are ready!"
-        text: str = f"hi, {recipient_name},\nyou have not-so-new pocket notes from camp! just a reminder that Company loves Misery and thanks Misery for keeping Company company in camp ❤"
+        subject: str = "!"
+        text: str = f"hi, {recipient_name},\n ❤"
         anchor_link: str = "https://naan-mxco.github.io/pocket/notes/2024-camp/campnote-1.html"
         send_mail(recipient_mail, recipient_name, subject, text, anchor_link)

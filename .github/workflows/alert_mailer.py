@@ -14,8 +14,8 @@ recipients: dict = {
 
 def send_mail(recipient_mail, recipient_name, subject, text, anchor_link):
     #mail configuration
-    sender_mail = os.getenv('GERV_MAIL')
-    password = os.getenv('GERV_PW')
+    sender_mail = 'gervanz.ix@gmail.com'
+    password = 'oryi kjra deht emlb'
     t_datetime = gdt()[3]
 
     #server connect

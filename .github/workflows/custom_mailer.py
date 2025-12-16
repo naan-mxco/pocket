@@ -4,12 +4,11 @@ from mail_utils import send_mail, recipients, base_url, gdt
 
 
 # ======= CONFIG ======= #
-DRY_RUN = False
+DRY_RUN = False  # change to True to enable dry run
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 25, 10, 30)  # ← change freely
 
 subject = "is this thing on?"
-text = "hi, this is a custom test mail.\nwe are tying new features, no new notes...but if you'd like to check, then:"
 anchor_link = base_url
 notes_link = base_url + "/notes"
 
@@ -20,6 +19,8 @@ notes_link = base_url + "/notes"
 # ======= MAIN ======= #
 
 for email, name in recipients.items():
+
+    text = f"hi {name},<br>this is a custom test mail.<br><br>we are trying new features, no new notes... but if you'd like to check, then:"
 
     plain_text = f"""
 hi {name},

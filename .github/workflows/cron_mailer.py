@@ -6,7 +6,7 @@ from mail_utils import recipients, send_mail, sbj, base_url, gdt, ordinal_suffix
 
 
 # ======= CONFIG ======= #
-DRY_RUN = False
+DRY_RUN = False  # change to True to enable dry run
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 25, 10, 30)  # ← change freely
 
@@ -116,7 +116,7 @@ def main():
 <table style="border: none; width: 90%; background-color: transparent;">
 <tr>
 <td align="center">
-<p style="font-size: 20px; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
+<p style="font-size: 1.2em; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
 </td>
 </tr>
 </table>
@@ -141,7 +141,7 @@ def main():
             print(plain_text)
             print("\n--- HTML CONTENT ---\n")
             print(html_content)
-            print("===================\n")
+            print("\n======= END =======\n")
         else:
             print("DRY_RUN=OFF")
             send_mail(

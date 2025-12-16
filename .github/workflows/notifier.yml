@@ -53,7 +53,7 @@ jobs:
           else
             echo "::set-output name=commit_match::false"
           fi
-          if [[ $COMMIT_MESSAGE == *"send custom mail"* ]]; then
+          if [[ $COMMIT_MESSAGE == *"send custom mail"* || github.event_name == 'workflow_dispatch' ]]; then
             echo "::set-output name=custom_match::true"
           else
             echo "::set-output name=custom_match::false"

@@ -57,7 +57,7 @@ check your notes: {notes_link}
 <table style="border: none; width: 90%; background-color: transparent;">
 <tr>
 <td align="center">
-<p style="font-size: 1em; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
+<p style="font-size: 1.2em; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
 </td>
 </tr>
 </table>

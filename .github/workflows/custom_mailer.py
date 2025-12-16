@@ -4,7 +4,7 @@ from mail_utils import send_mail, recipients, base_url, gdt
 
 
 # ======= CONFIG ======= #
-DRY_RUN = True
+DRY_RUN = False
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 25, 10, 30)  # ← change freely
 

@@ -1,5 +1,5 @@
-# send_cron.py
 import json
+from pathlib import Path
 from datetime import datetime
 from mail_utils import recipients, send_mail, sbj, base_url, gdt, ordinal_suffix
 
@@ -23,9 +23,18 @@ card_template = """
 
 # ======= HELPERS ======= #
 
+# def load_notes():
+#     with open("notes_index.json", "r", encoding="utf-8") as f:
+#         return json.load(f)
+
 def load_notes():
-    with open("notes_index.json", "r", encoding="utf-8") as f:
-        return json.load(f)
+    # repo root is two parents up from .github/workflows/<this-file>
+    repo_root = Path(__file__).resolve().parents[2]
+    notes_file = repo_root / "notes_index.json"
+    if not notes_file.exists():
+        # either return empty or raise a clearer error
+        return []        # or: raise FileNotFoundError(f"{notes_file} not found")
+    return json.loads(notes_file.read_text(encoding="utf-8"))
 
 def filter_notes_for_today(notes, fake_now=None):
     _, now_date, _, _, _ = gdt(fake_now)

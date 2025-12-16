@@ -4,7 +4,7 @@ from mail_utils import send_mail, recipients, base_url, gdt
 
 
 # ======= CONFIG ======= #
-DRY_RUN = False
+DRY_RUN = True
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 25, 10, 30)  # ← change freely
 
@@ -57,7 +57,7 @@ check your notes: {notes_link}
 <table style="border: none; width: 90%; background-color: transparent;">
 <tr>
 <td align="center">
-<p style="font-size: 20px; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
+<p style="font-size: 1em; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
 </td>
 </tr>
 </table>
@@ -97,7 +97,7 @@ see all notes
         print(plain_text)
         print("\n--- HTML CONTENT ---\n")
         print(html_content)
-        print("===================\n")
+        print("\n======= END =======\n")
     else:
         print("DRY_RUN=OFF")
         send_mail(

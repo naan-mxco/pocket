@@ -49,14 +49,14 @@ jobs:
         run: |
           COMMIT_MESSAGE=$(git log --format=%B -n 1 $GITHUB_SHA)
           if [[ $COMMIT_MESSAGE == *"new note"* ]]; then
-            echo "::set-output name=commit_match::true"
+            echo "commit_match=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=commit_match::false"
+            echo "commit_match=false" >> "$GITHUB_OUTPUT"
           fi
           if [[ $COMMIT_MESSAGE == *"send custom mail"* || github.event_name == 'workflow_dispatch' ]]; then
-            echo "::set-output name=custom_match::true"
+            echo "custom_match=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=custom_match::false"
+            echo "custom_match=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Run Commit Mailer

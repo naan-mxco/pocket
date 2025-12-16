@@ -1,6 +1,7 @@
 name: Notification Automation
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '*/10 * * * *'  # daily 9:05 AM local (UTC+1)
   push:
@@ -11,12 +12,14 @@ on:
   issue_comment:
     types: [created]
 
+
+
 jobs:
   # -------------------------------
   # Cron-based daily check+notif
   # -------------------------------
   send_cron_notification:
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'schedule'  || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     env:
       GERV_MAIL: ${{ secrets.GERV_MAIL }}

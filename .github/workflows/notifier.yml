@@ -1,4 +1,5 @@
 name: Notification Automation
+# sends notifications via mail
 
 on:
   workflow_dispatch:

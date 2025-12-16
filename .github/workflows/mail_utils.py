@@ -7,7 +7,7 @@ from email.mime.text import MIMEText
 base_url = "https://naan-mxco.github.io/pocket/"
 
 recipients: dict = {
-    # 'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
+    'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
     # 'bayodenancy111@gmail.com' : 'Bolanle Nancy',
     # 'toniiabudu@gmail.com' : 'Tonii Abudu',
     # 'auralex99@gmail.com' : 'Anthony A U',

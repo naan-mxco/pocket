@@ -9,7 +9,7 @@ FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 25, 10, 30)  # ← change freely
 
 subject = "is this thing on?"
-text = "hi, this is a custom test mail."
+text = "hi, this is a custom test mail.\nwe are tying new features, no new notes...but if you'd like to check, then:"
 anchor_link = base_url
 notes_link = base_url + "/notes"
 

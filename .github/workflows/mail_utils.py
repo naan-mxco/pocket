@@ -122,7 +122,7 @@ def sbj(recipient_mail=None, fake_now: datetime | None = None):
             "subject": "INTERNATIONAL WOMEN'S DAY"
         },
         'perche' : {
-            "condition" : now_date[1:] == ['12', '16'],
+            "condition" : (now_date[1:] == ['12', '16']) or (now_date[1:] == ['12', '17']) or (now_date[1:] == ['12', '18']),
             "subject" : "A CHECK-IN, JUST BECAUSE"
         },
     }

@@ -1,6 +1,8 @@
 name: Notification Automation
 
 on:
+  schedule:
+    - cron: '35 14 * * *'  # daily 9:05 AM local (UTC+1)
   push:
     branches:
       - main
@@ -10,54 +12,70 @@ on:
     types: [created]
 
 jobs:
-  send_notification:
+  # -------------------------------
+  # Cron-based daily check+notif
+  # -------------------------------
+  send_cron_notification:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    env:
+      GERV_MAIL: ${{ secrets.GERV_MAIL }}
+      GERV_PW: ${{ secrets.GERV_PW }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Cron Mailer
+        run: python cron_mailer.py
+        working-directory: .github/workflows
+
+  # -------------------------------
+  # Commit-based notifs
+  # -------------------------------
+  send_commit_or_custom_mail:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
       GERV_MAIL: ${{ secrets.GERV_MAIL }}
       GERV_PW: ${{ secrets.GERV_PW }}
-
     steps:
-      - name: Checkout Page
-        uses: actions/checkout@main
+      - uses: actions/checkout@v3
 
       - name: Filter Commit Message
         id: filter_commit
         run: |
           COMMIT_MESSAGE=$(git log --format=%B -n 1 $GITHUB_SHA)
           if [[ $COMMIT_MESSAGE == *"new note"* ]]; then
-            echo "::set-output name=match::true"
+            echo "::set-output name=commit_match::true"
           else
-            echo "::set-output name=match::false"
+            echo "::set-output name=commit_match::false"
+          fi
+          if [[ $COMMIT_MESSAGE == *"send custom mail"* ]]; then
+            echo "::set-output name=custom_match::true"
+          else
+            echo "::set-output name=custom_match::false"
           fi
 
-      - name: Execute Notification Workflow
-        uses: naan-mxco/pocket@main
-        with:
-          github-token: ${{ secrets.ACTION_TOKEN }}
-
-      - name: Send Email Notification
-        if: steps.filter_commit.outputs.match == 'true'
-        run: |
-          python events_mailer.py
+      - name: Run Commit Mailer
+        if: steps.filter_commit.outputs.commit_match == 'true'
+        run: python commit_mailer.py
         working-directory: .github/workflows
 
-    #   - name: Send WhatsApp Notification
-    #     if: steps.filter_commit.outputs.match == 'true'
-    #     run: |
-    #       python send_whatsapp_notification.py
+      - name: Run Custom Mailer
+        if: steps.filter_commit.outputs.custom_match == 'true'
+        run: python custom_mailer.py
+        working-directory: .github/workflows
 
-
-  send_notification_on_issue:
+  # -------------------------------
+  # Issue+Comment notification
+  # -------------------------------
+  send_issue_notification:
     if: github.event_name == 'issues' || github.event_name == 'issue_comment'
     runs-on: ubuntu-latest
-
     env:
       GERV_MAIL: ${{ secrets.GERV_MAIL }}
       GERV_PW: ${{ secrets.GERV_PW }}
-
     steps:
-      - name: Filter Issue or Comment Content
+      - uses: actions/checkout@v3
+      - name: Filter Issue / Comment
         id: filter_content
         run: |
           CONTENT="${{ github.event.issue.body || github.event.comment.body }}"
@@ -67,12 +85,11 @@ jobs:
             echo "::set-output name=match::false"
           fi
 
-      - name: Send Email Notification for Issue or Comment
+      - name: Execute Response Mailer
         if: steps.filter_content.outputs.match == 'true'
-        run: |
-          python response_mailer.py
+        run: python response_mailer.py
         working-directory: .github/workflows
 
-      - name: Debug Outputs for Issue or Comment
+      - name: Debug Outputs
         if: steps.filter_content.outputs.match == 'false'
         run: echo "No matching content found. Skipping notification."

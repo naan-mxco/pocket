@@ -166,11 +166,12 @@ def send_mail(recipient_mail, recipient_name, subject, html_content, plain_text)
             server.login(sender_mail, password)
 
             #send mail
+            server.set_debuglevel(1)
             server.sendmail(sender_mail, recipient_mail, msg.as_string())
             print(f"mail sent to {recipient_name} - {recipient_mail}")
 
         print("---all mails sent---")
-        server.quit()
+        # server.quit()
 
     except Exception as e:
         print("Failed to send emails. Error:", str(e))

@@ -20,7 +20,7 @@ notes_link = base_url + "/notes"
 
 for email, name in recipients.items():
 
-    text = f"hi {name},<br>this is a custom test mail.<br><br>we are trying new features, no new notes... but if you'd like to check, then:"
+    text = f"hi {name},this is a custom test mail.<br><br>we are trying new features, no new notes... but if you'd like to check, then:"
 
     plain_text = f"""
 hi {name},

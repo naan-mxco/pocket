@@ -20,7 +20,7 @@ notes_link = base_url + "/notes"
 
 for email, name in recipients.items():
 
-    text = f"hi {name},<br>this is a custom test mail.<br><br>we are trying new features, no new notes... but if you'd like to check, then:"
+    text = f"hi {name}, this is a custom test mail. we are trying new features, no new notes... but if you'd like to check, then:"
 
     plain_text = f"""
 hi {name},
@@ -58,7 +58,7 @@ check your notes: {notes_link}
 <table style="border: none; width: 90%; background-color: transparent;">
 <tr>
 <td align="center">
-<p style="font-size: 1.2em; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
+<p style="font-size: 1.2em; line-height: 1.2; margin: 0; padding: 0.5em; color: #cc383f">{text}</p>
 </td>
 </tr>
 </table>

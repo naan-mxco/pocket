@@ -7,11 +7,11 @@ from email.mime.text import MIMEText
 base_url = "https://naan-mxco.github.io/pocket/"
 
 recipients: dict = {
-    # 'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
-    # 'bayodenancy111@gmail.com' : 'Bolanle Nancy',
-    # 'toniiabudu@gmail.com' : 'Tonii Abudu',
-    # 'auralex99@gmail.com' : 'Anthony A U',
-    'abudu.m1700302@st.futminna.edu.ng' : 'The Boss'
+    'naan.mxco@gmail.com' : 'Naan-MxCo BeeTee',
+    'bayodenancy111@gmail.com' : 'Bolanle Nancy',
+    'toniiabudu@gmail.com' : 'Tonii Abudu',
+    'auralex99@gmail.com' : 'Anthony A U',
+    # 'abudu.m1700302@st.futminna.edu.ng' : 'The Boss'
 }
 
 
@@ -41,8 +41,10 @@ def gdt(fake_now: datetime | None = None):
 
 def ordinal_suffix(number):
     if 10 <= number % 100 <= 20:
-        return f"{number}th"
-    return {1: 'st', 2: 'nd', 3: 'rd'}.get(number % 10, "th")
+        suffix = "th"
+    else:
+        suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(number % 10, "th")
+    return f"{number}{suffix}"
 
 
 
@@ -50,7 +52,7 @@ def from419(fake_now: datetime | None = None):
     #start date
     start_date = datetime(2024, 4, 19)
     #current date
-    current_date = datetime.now()
+    current_date = fake_now if fake_now else datetime.now()
     #time between start and current
     difference = current_date - start_date
     
@@ -87,7 +89,7 @@ def sbj(recipient_mail=None, fake_now: datetime | None = None):
             },
         'week' : {
             "condition": dayof_week == 'FR',
-            "subject": f"OUR {ordinal_suffix(weeks)} WEEK-VERSARY"
+            "subject": f"OUR {ordinal_suffix(weeks)} WEEKIVERSARY"
             },
         'gf' : {
             "condition": now_date[1:] == ['08', '01'],

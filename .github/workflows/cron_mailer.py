@@ -8,7 +8,7 @@ from mail_utils import recipients, send_mail, sbj, base_url, gdt, ordinal_suffix
 # ======= CONFIG ======= #
 DRY_RUN = False  # change to True to enable dry run
 FAKE_NOW = None
-# FAKE_NOW = datetime(2025, 12, 25, 10, 30)  # ← change freely
+# FAKE_NOW = datetime(2025, 12, 19, 10, 30)  # ← change freely
 
 card_template = """
 <tr>
@@ -53,7 +53,7 @@ def build_dynamic_text(notes, fake_now=None):
     _, now_date, _, _, _ = gdt(fake_now)
     ordinal_day = ordinal_suffix(int(now_date[2]))
     if not notes:
-        return f"this is just a reminder that today is another special day for us: {sbj(fake_now=FAKE_NOW).lower()}"
+        return f"this is just a reminder that today is another special day; {sbj(fake_now=FAKE_NOW).lower()}"
     return f"this is just a reminder that today is another special day for us: {sbj(fake_now=FAKE_NOW).lower()}\nand here's a look at notes from today in history."
 
 def build_plain_text(notes, recipient_name, fake_now=None):

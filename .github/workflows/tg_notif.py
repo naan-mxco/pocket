@@ -1,4 +1,8 @@
 import os
+import sys
+repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+if repo_root not in sys.path:
+    sys.path.append(repo_root)
 import random
 import requests
 from datetime import datetime
@@ -7,7 +11,7 @@ from datetime import datetime
 
 # --- CONFIGURATION ---
 
-DRY_RUN = False  # True for Dry run, False to send
+DRY_RUN = True  # True for Dry run, False to send
 FAKE_NOW = datetime.now()
 # FAKE_NOW = datetime(2025, 12, 19)
 TELEGRAM_TARGETS = [

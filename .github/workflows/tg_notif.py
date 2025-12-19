@@ -15,7 +15,7 @@ DRY_RUN = False  # True for Dry run, False to send
 FAKE_NOW = datetime.now()
 # FAKE_NOW = datetime(2025, 12, 19)
 TELEGRAM_TARGETS = [
-    # "7465305123", #tonii
+    "7465305123", #tonii
     "1824489857", #bola
     "6723013812", #t.a.
     "-1003399218448", #pocket channel

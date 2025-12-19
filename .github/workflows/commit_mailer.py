@@ -23,7 +23,7 @@ _, current_vibe = sbj(fake_now=FAKE_NOW)
 
 for email, name in recipients.items():
 
-    subject = sbj(email, fake_now=FAKE_NOW)
+    subject, _ = sbj(email, fake_now=FAKE_NOW)
     text = f"hi, {name},<br><br>you should check out what's new in your pocket!"
 
     plain_text = f"""

@@ -8,7 +8,8 @@ from datetime import datetime
 # --- CONFIGURATION ---
 
 DRY_RUN = True  # True for Dry run, False to send
-FAKE_NOW = datetime(2025, 12, 19)
+FAKE_NOW = datetime.now()
+# FAKE_NOW = datetime(2025, 12, 19)
 TELEGRAM_TARGETS = [
     "7465305123" #tonii
     # "1824489857" #bola

@@ -7,7 +7,7 @@ from datetime import datetime
 
 # --- CONFIGURATION ---
 
-DRY_RUN = True  # True for Dry run, False to send
+DRY_RUN = False  # True for Dry run, False to send
 FAKE_NOW = datetime.now()
 # FAKE_NOW = datetime(2025, 12, 19)
 TELEGRAM_TARGETS = [

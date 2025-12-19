@@ -1,10 +1,12 @@
+import telegram_notifier
 from datetime import datetime
 from mail_utils import send_mail, recipients, base_url, gdt
 
 
 
 # ======= CONFIG ======= #
-DRY_RUN = False  # change to True to enable dry run
+
+DRY_RUN = False  # True for Dry run, False to send
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 25, 10, 30)  # ← change freely
 
@@ -17,6 +19,8 @@ notes_link = base_url + "/notes"
 
 
 # ======= MAIN ======= #
+
+import tg_notif
 
 for email, name in recipients.items():
 
@@ -108,3 +112,12 @@ see all notes
                 html_content,
                 plain_text,
             )
+        
+
+
+# ======= TELEGRAM ======= #
+clean_text = text.replace("<br>", "\n")
+tg_notif.notify(
+    subject=subject, 
+    custom_text=clean_text
+)

@@ -1,10 +1,10 @@
 name: Notification Automation
-# sends notifications via mail
+# sends notifications via mail and telegram based on various triggers
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 08 * * *'  # daily 9:05 AM local (UTC+1)
+    - cron: '00 08 * * *'  # daily 9:00 AM local (UTC+1)
   push:
     branches:
       - main
@@ -20,14 +20,20 @@ jobs:
   # Cron-based daily check+notif
   # -------------------------------
   send_cron_notification:
-    if: github.event_name == 'schedule'
-        # || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     env:
       GERV_MAIL: ${{ secrets.GERV_MAIL }}
       GERV_PW: ${{ secrets.GERV_PW }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install requests
       - name: Run Cron Mailer
         run: python cron_mailer.py
         working-directory: .github/workflows
@@ -41,8 +47,15 @@ jobs:
     env:
       GERV_MAIL: ${{ secrets.GERV_MAIL }}
       GERV_PW: ${{ secrets.GERV_PW }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install requests
 
       - name: Filter Commit Message
         id: filter_commit

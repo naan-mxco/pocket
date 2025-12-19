@@ -6,7 +6,7 @@ from mail_utils import recipients, send_mail, sbj, base_url, gdt, ordinal_suffix
 
 
 # ======= CONFIG ======= #
-DRY_RUN = False  # change to True to enable dry run
+DRY_RUN = False  # True for Dry run, False to send
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 19, 10, 30)  # ← change freely
 
@@ -22,10 +22,6 @@ card_template = """
 """
 
 # ======= HELPERS ======= #
-
-# def load_notes():
-#     with open("notes_index.json", "r", encoding="utf-8") as f:
-#         return json.load(f)
 
 def load_notes():
     # repo root is two parents up from .github/workflows/<this-file>
@@ -81,7 +77,9 @@ def main():
     text = build_dynamic_text(today_notes, FAKE_NOW)
     subject = sbj(fake_now=FAKE_NOW)
 
+    import tg_notif
 
+    _, vibe = sbj(fake_now=FAKE_NOW)
     
     for email, name in recipients.items():
 
@@ -151,6 +149,16 @@ def main():
                     html_content,
                     plain_text,
                 )
+            
+
+
+    # ======= TELEGRAM ======= #
+    tg_notif.notify(
+        subject=subject, 
+        notes=today_notes, 
+        vibe=vibe, 
+        mode="milestone"
+    )
 
 
 

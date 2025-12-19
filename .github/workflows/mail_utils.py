@@ -73,35 +73,43 @@ def sbj(recipient_mail=None, fake_now: datetime | None = None):
     events = {
         'bola' : {
             "condition": now_date[1:] == ['08', '04'], #month, day
-            "subject": "HAPPY BIRTHDAY, BOLANLE" if recipient_mail == 'bayodenancy111@gmail.com' else "BOLA'S BIRTHDAY"
+            "subject": "HAPPY BIRTHDAY, BOLANLE" if recipient_mail == 'bayodenancy111@gmail.com' else "BOLA'S BIRTHDAY",
+            "vibe": "high"
             },
         'tonii' : {
             "condition": now_date[1:] == ['10', '09'],
-            "subject": "OUR BIRTHDAY"
+            "subject": "OUR BIRTHDAY",
+            "vibe": "mid"
             },
         'anno' : {
             "condition": now_date[1:] == ['04', '19'],
-            "subject": f"OUR {ordinal_suffix(years)} ANNIVERSARY"
+            "subject": f"OUR {ordinal_suffix(years)} ANNIVERSARY",
+            "vibe": "high"
             },
         'mese' : {
             "condition": now_date[2] == '19',
-            "subject": f"OUR {ordinal_suffix(months)} MESEVERSARY"
+            "subject": f"OUR {ordinal_suffix(months)} MESEVERSARY",
+            "vibe": "high"
             },
         'week' : {
             "condition": dayof_week == 'FR',
-            "subject": f"OUR {ordinal_suffix(weeks)} WEEKIVERSARY"
+            "subject": f"OUR {ordinal_suffix(weeks)} WEEKIVERSARY",
+            "vibe": "high"
             },
         'gf' : {
             "condition": now_date[1:] == ['08', '01'],
-            "subject": "GIRLFRIENDS' DAY"
+            "subject": "GIRLFRIENDS' DAY",
+            "vibe": "mid"
         },
         'sun' : {
             "condition": now_date[1:] == ['11', '10'],
-            "subject": "THE DAY TEE KISSED THE SUN"
+            "subject": "THE DAY TEE KISSED THE SUN",
+            "vibe": "high"
         },
         'xmas' : {
             "condition": now_date[1:] == ['12', '25'],
-            "subject": "CHRISTMAS"
+            "subject": "CHRISTMAS",
+            "vibe": "mid"
         },
         'xmasszn': {
             "condition": (now_date[1] == '12' and int(now_date[2]) >= 26) or (now_date[1] == '01' and int(now_date[2]) <= 6),
@@ -109,39 +117,62 @@ def sbj(recipient_mail=None, fake_now: datetime | None = None):
                             f"CHRISTMAS SEASON (Day {int(now_date[2]) - 24}/12)" if now_date[1] == '12' else
                             f"CHRISTMAS SEASON (Day {int(now_date[2]) + 7}/12)" if int(now_date[2]) <= 5 else
                             "EPIPHANY / THREE KINGS' DAY"
-                        )
+                        ),
+            "vibe": "mid"
         },
         'newyr' : {
             "condition": now_date[1:] == ['01', '01'],
-            "subject": "NEW YEAR"
+            "subject": "NEW YEAR",
+            "vibe": "high"
         },
         'vals' : {
             "condition": now_date[1:] == ['02', '14'],
-            "subject": "VALENTINE'S DAY"
+            "subject": "VALENTINE'S DAY",
+            "vibe": "high"
         },
         'iwd' : {
             "condition": now_date[1:] == ['03', '08'],
-            "subject": "INTERNATIONAL WOMEN'S DAY"
+            "subject": "INTERNATIONAL WOMEN'S DAY",
+            "vibe": "mid"
         },
         'perche' : {
             "condition" : (now_date[1:] == ['12', '16']) or (now_date[1:] == ['12', '17']) or (now_date[1:] == ['12', '18']),
-            "subject" : "A CHECK-IN, JUST BECAUSE"
+            "subject" : "A CHECK-IN, JUST BECAUSE",
+            "vibe": "low"
         },
     }
 
+    
+    
     msg_subject = "IT'S "
+    vibe = "low"
+    mid_count = 0
+
     for details in events.values():
         if details["condition"]:
             if recipient_mail == 'bayodenancy111@gmail.com' and details["subject"] == "HAPPY BIRTHDAY, BOLANLE!!!":
-                return details["subject"]
-            elif msg_subject != "IT'S ":
+                return details["subject"], "high"
+            
+            if details["vibe"] == "high":
+                vibe = "high"
+            elif details["vibe"] == "mid":
+                mid_count += 1
+                if mid_count >=2 or vibe == "high":
+                    vibe = "high"
+                else:
+                    vibe = "mid"
+            
+            if msg_subject != "IT'S ":
                 msg_subject += " AND "
             msg_subject += details["subject"]
+
     if msg_subject == "IT'S ":
         msg_subject = "check your pocket"
-    msg_subject += "!"
+        vibe = "low"
+    else:
+        msg_subject += "!"
 
-    return msg_subject
+    return msg_subject, vibe
 
 
 

@@ -6,7 +6,7 @@ from mail_utils import recipients, send_mail, sbj, base_url, gdt, ordinal_suffix
 
 
 # ======= CONFIG ======= #
-DRY_RUN = False  # True for Dry run, False to send
+DRY_RUN = True  # True for Dry run, False to send
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 19, 10, 30)  # ← change freely
 
@@ -32,6 +32,8 @@ def load_notes():
         return []        # or: raise FileNotFoundError(f"{notes_file} not found")
     return json.loads(notes_file.read_text(encoding="utf-8"))
 
+
+
 def filter_notes_for_today(notes, fake_now=None):
     _, now_date, _, _, _ = gdt(fake_now)
     today_mmdd = f"{now_date[1]}-{now_date[2]}"
@@ -42,15 +44,33 @@ def filter_notes_for_today(notes, fake_now=None):
             matched.append(note)
     return matched
 
+
+
 def build_cards(notes):
     return "\n".join(card_template.format(link=n["url"], title=n["title"], date=n["date"]) for n in notes)
 
+
+
 def build_dynamic_text(notes, fake_now=None):
     _, now_date, _, _, _ = gdt(fake_now)
-    ordinal_day = ordinal_suffix(int(now_date[2]))
+    subject, _ = sbj(fake_now=fake_now)
+    
     if not notes:
-        return f"this is just a reminder that today is another special day; {sbj(fake_now=FAKE_NOW).lower()}"
-    return f"this is just a reminder that today is another special day; {sbj(fake_now=FAKE_NOW).lower()}\nand here's a look at notes from today in history."
+        return f"this is just a reminder that today is another special day; {subject.lower()}"
+    
+    if isinstance(notes, list):
+        count = len(notes)
+    else:
+        count = 1
+
+    if count == 1:
+        note_phrase = "here is a note from today in history"
+    else:
+        note_phrase = f"here are {count} notes from today in history"
+
+    return (f"this is just a reminder that today is another special day; {subject.lower()} and {note_phrase} (some links may be broken).")
+    
+
 
 def build_plain_text(notes, recipient_name, fake_now=None):
     text = build_dynamic_text(notes, fake_now)
@@ -67,6 +87,10 @@ def build_plain_text(notes, recipient_name, fake_now=None):
 
     return "\n".join(lines)
 
+
+
+
+
 # ======= MAIN ======= #
 
 def main():
@@ -75,7 +99,7 @@ def main():
 
     cards_html = build_cards(today_notes)
     text = build_dynamic_text(today_notes, FAKE_NOW)
-    subject = sbj(fake_now=FAKE_NOW)
+    subject, _ = sbj(fake_now=FAKE_NOW)
 
     import tg_notif
 

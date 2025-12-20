@@ -101,7 +101,7 @@ def notify(subject, notes=None, vibe="low", mode="milestone", custom_text=None):
             buttons.append([{"text": f"📜 {n['title']}", "url": n.get('url', '#')}])
     
     # home button
-    buttons.append([{"text": "check pocket", "url": "https://naan-mxco.github.io/pocket/"}])
+    buttons.append([{"text": "- check pocket -", "url": "https://naan-mxco.github.io/pocket/"}])
 
 
 

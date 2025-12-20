@@ -99,11 +99,14 @@ def main():
 
     cards_html = build_cards(today_notes)
     text = build_dynamic_text(today_notes, FAKE_NOW)
-    subject, _ = sbj(fake_now=FAKE_NOW)
+    subject, vibe = sbj(fake_now=FAKE_NOW)
+
+    # ======= THE GATEKEEPER ======= #
+    if not today_notes and vibe == "low":
+        print(f"Nothing to report: 0 notes and '{vibe}' vibe, shutting down.")
+        return
 
     import tg_notif
-
-    _, vibe = sbj(fake_now=FAKE_NOW)
     
     for email, name in recipients.items():
 
@@ -151,6 +154,7 @@ def main():
 </body>
 </html>
 """
+        pass
 
         if DRY_RUN:
             print("DRY_RUN=ON")

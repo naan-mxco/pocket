@@ -6,7 +6,7 @@ from mail_utils import recipients, send_mail, sbj, base_url, gdt, ordinal_suffix
 
 
 # ======= CONFIG ======= #
-DRY_RUN = True  # True for Dry run, False to send
+DRY_RUN = False  # True for Dry run, False to send
 FAKE_NOW = None
 # FAKE_NOW = datetime(2025, 12, 19, 10, 30)  # ← change freely
 
